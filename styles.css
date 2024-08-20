@@ -4,12 +4,15 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, black, yellow);
+    background-color: #8a2be2; /* Однотонный фиолетовый фон */
     font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
 }
 
 .container {
     text-align: center;
+    z-index: 1;
 }
 
 #balance {
@@ -22,18 +25,18 @@ body, html {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    background: transparent; /* Прозрачный фон */
-    border: 5px solid #8b8000; /* Темно-желтые края */
+    background-color: yellow;
+    border: 5px solid #8b8000;
     position: relative;
     cursor: pointer;
-    transition: transform 0.2s;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 #score-button:active {
-    transform: scale(0.9);
+    transform: scale(0.95); /* Кнопка слегка уменьшается при нажатии */
 }
 
 .triangle {
@@ -41,7 +44,29 @@ body, html {
     height: 0;
     border-left: 25px solid transparent;
     border-right: 25px solid transparent;
-    border-top: 40px solid #8b8000; /* Цвет треугольника как у краёв кнопки */
+    border-top: 40px solid #8b8000;
     border-radius: 10%;
-    transform: rotate(0deg); /* Основание треугольника горизонтально */
+    transform: rotate(0deg);
+}
+
+.particle {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+    animation: particle-animation 0.5s forwards;
+}
+
+@keyframes particle-animation {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--x), var(--y)) scale(0.5);
+        opacity: 0;
+    }
 }
