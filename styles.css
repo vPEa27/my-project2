@@ -1,37 +1,47 @@
-/* Общие стили */
-body {
-    font-family: Arial, sans-serif;
+body, html {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom right, red, blue);
-    height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(135deg, black, yellow);
+    font-family: Arial, sans-serif;
 }
 
-/* Счетчик баллов */
-#scoreContainer {
-    font-size: 48px; /* Увеличим размер шрифта для числа */
-    color: white;
+.container {
+    text-align: center;
+}
+
+#balance {
+    font-size: 3em;
     margin-bottom: 20px;
+    color: white;
 }
 
-/* Кнопка */
-button {
-    background-color: yellow;
-    padding: 30px;
-    border: 5px solid #b8860b; /* Тёмно-жёлтая граница */
+#score-button {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
+    background: transparent; /* Прозрачный фон */
+    border: 5px solid #8b8000; /* Темно-желтые края */
+    position: relative;
     cursor: pointer;
+    transition: transform 0.2s;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-button svg {
-    width: 60px;
-    height: 60px;
+#score-button:active {
+    transform: scale(0.9);
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 40px solid #8b8000; /* Цвет треугольника как у краёв кнопки */
+    border-radius: 10%;
+    transform: rotate(0deg); /* Основание треугольника горизонтально */
 }
