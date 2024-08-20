@@ -1,8 +1,11 @@
 let balance = 0;
 
-document.getElementById('score-button').addEventListener('click', function() {
+document.getElementById('score-button').addEventListener('click', function(event) {
     balance++;
     document.getElementById('balance').textContent = balance;
+
+    // Остановить всплытие события, чтобы оно не вызывало эффект шариков
+    event.stopPropagation();
 });
 
 // Обработка кликов по экрану
@@ -13,7 +16,7 @@ document.body.addEventListener('click', function(event) {
 });
 
 function createParticles(x, y) {
-    const particleCount = 10;
+    const particleCount = 10; // Количество частиц
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
