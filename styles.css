@@ -1,72 +1,52 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #8a2be2; /* Однотонный фиолетовый фон */
+body {
     font-family: Arial, sans-serif;
-    overflow: hidden;
-    position: relative;
-}
-
-.container {
-    text-align: center;
-    z-index: 1;
-}
-
-#balance {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: white;
-}
-
-#score-button {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: yellow;
-    border: 5px solid #8b8000;
-    position: relative;
-    cursor: pointer;
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.comic-container {
+    width: 100%;
+    max-width: 600px;
     overflow: hidden;
-}
-
-#score-button:active {
-    transform: scale(0.95); /* Кнопка слегка уменьшается при нажатии */
-}
-
-.triangle {
-    width: 0;
-    height: 0;
-    border-left: 25px solid transparent;
-    border-right: 25px solid transparent;
-    border-top: 40px solid #8b8000;
-    border-radius: 10%;
-    transform: rotate(0deg);
-}
-
-.particle {
-    position: absolute;
-    width: 5px;
-    height: 5px;
+    border: 2px solid #333;
     background-color: white;
-    border-radius: 50%;
-    pointer-events: none;
-    opacity: 0;
-    animation: particle-animation 0.5s forwards;
 }
 
-@keyframes particle-animation {
-    0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translate(var(--x), var(--y)) scale(0.5);
-        opacity: 0;
-    }
+.comic-panel {
+    display: none;
+    text-align: center;
+    padding: 10px;
+}
+
+.comic-image {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid #333;
+}
+
+.caption {
+    margin-top: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+#next-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#next-button:hover {
+    background-color: #0056b3;
 }
