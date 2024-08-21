@@ -1,39 +1,21 @@
-let balance = 0;
+let currentPanel = 0;
+const panels = document.querySelectorAll('.comic-panel');
+const nextButton = document.getElementById('next-button');
 
-document.getElementById('score-button').addEventListener('click', function(event) {
-    balance++;
-    document.getElementById('balance').textContent = balance;
-
-    // Остановить всплытие события, чтобы оно не вызывало эффект шариков
-    event.stopPropagation();
-});
-
-// Обработка кликов по экрану
-document.body.addEventListener('click', function(event) {
-    if (!event.target.closest('#score-button')) { // Если клик не по кнопке
-        createParticles(event.clientX, event.clientY);
-    }
-});
-
-function createParticles(x, y) {
-    const particleCount = 10; // Количество частиц
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        document.body.appendChild(particle);
-
-        const angle = Math.random() * 2 * Math.PI;
-        const radius = Math.random() * 20 + 10;
-        const xOffset = Math.cos(angle) * radius;
-        const yOffset = Math.sin(angle) * radius;
-
-        particle.style.left = `${x}px`;
-        particle.style.top = `${y}px`;
-        particle.style.setProperty('--x', `${xOffset}px`);
-        particle.style.setProperty('--y', `${yOffset}px`);
-
-        particle.addEventListener('animationend', () => {
-            particle.remove();
-        });
-    }
+function showPanel(index) {
+    panels.forEach((panel, i) => {
+        panel.style.display = i === index ? 'block' : 'none';
+    });
 }
+
+nextButton.addEventListener('click', () => {
+    currentPanel++;
+    if (currentPanel >= panels.length) {
+        currentPanel = 0;
+    }
+    showPanel(currentPanel);
+});
+
+// Изначально показываем первый кадр
+showPanel(currentPanel);
+
