@@ -1,23 +1,17 @@
-let currentPanel = 0;
-const panels = document.querySelectorAll('.comic-panel');
-const nextButton = document.getElementById('next-button');
-const prevButton = document.getElementById('prev-button');
+// Инициализация Web App
+const tg = window.Telegram.WebApp;
 
-function showPanel(index) {
-    panels.forEach((panel, i) => {
-        panel.classList.toggle('active', i === index);
-    });
-}
+tg.expand(); // Развернуть Web App на весь экран
 
-nextButton.addEventListener('click', () => {
-    currentPanel = (currentPanel + 1) % panels.length;
-    showPanel(currentPanel);
+// Вывести приветственное сообщение
+document.getElementById('greeting').innerText = `Привет, ${tg.initDataUnsafe.user.first_name}!`;
+
+// Обработчик для изменения текста по кнопке
+document.getElementById('changeText').addEventListener('click', () => {
+    document.getElementById('greeting').innerText = 'Вы изменили текст!';
 });
 
-prevButton.addEventListener('click', () => {
-    currentPanel = (currentPanel - 1 + panels.length) % panels.length;
-    showPanel(currentPanel);
+// Логирование закрытия Web App
+tg.onEvent('web_app_close', () => {
+    console.log('Web App закрыт');
 });
-
-// Изначально показываем первый кадр
-showPanel(currentPanel);
