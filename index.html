@@ -3,29 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Комикс MiniApp</title>
-    <link rel="stylesheet" href="style.css">
+    <title>MinApp for Telegram</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="comic-container">
-        <div class="comic-panel active">
-            <img src="https://getwallpapers.com/wallpaper/full/2/9/7/1121181-free-download-baby-kitten-wallpaper-2880x1800.jpg" alt="Frame 1" class="comic-image">
-        </div>
-        <div class="comic-panel">
-            <img src="https://on-desktop.com/wps/2017Nature___Rivers_and_lakes_Glacial_Moraine_Lake__Canada_113006_.jpg" alt="Frame 2" class="comic-image">
-        </div>
-        <div class="comic-panel">
-            <img src="https://rare-gallery.com/uploads/posts/390621-4k-wallpaper.jpg" alt="Frame 3" class="comic-image">
-        </div>
-        <div class="comic-panel">
-            <img src="https://cs.pikabu.ru/post_img/big/2013/03/06/11/1362591448_868344542.jpg" alt="Frame 4" class="comic-image">
-        </div>
-    </div>
-    <div class="controls">
-        <button id="prev-button">&#8592;</button>
-        <button id="next-button">&#8594;</button>
+    <div class="container">
+        <!-- Место для вставки изображения -->
+        <img id="photo" src="https://avatars.mds.yandex.net/i?id=7ffea7854df348007279cbbf3e1debca1ca3150ddd462dad-12439438-images-thumbs&n=13" alt="Фото" class="photo">
     </div>
 
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
