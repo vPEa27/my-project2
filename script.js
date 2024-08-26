@@ -117,23 +117,20 @@ document.getElementById('photo').addEventListener('click', (event) => {
 });
 
 // Добавление обработчиков событий для кнопок "Сюжет №1" и "Сюжет №2"
-document.getElementById('plot1Button').addEventListener('click', (event) => {
-    event.stopPropagation();
+document.getElementById('plot1Button').addEventListener('click', () => {
     currentPlot = 1;
     currentIndex = 0;
     updateImage();
 });
 
-document.getElementById('plot2Button').addEventListener('click', (event) => {
-    event.stopPropagation();
+document.getElementById('plot2Button').addEventListener('click', () => {
     currentPlot = 2;
     currentIndex = 0;
     updateImage();
 });
 
 // Добавление обработчика события для кнопки "Собственный сюжет"
-document.getElementById('customPlotButton').addEventListener('click', (event) => {
-    event.stopPropagation();
+document.getElementById('customPlotButton').addEventListener('click', () => {
     document.getElementById('customPlotModal').style.display = 'block';
 });
 
@@ -156,7 +153,7 @@ document.getElementById('saveCustomPlot').addEventListener('click', () => {
 
     saveCustomData();  // Сохранение в localStorage
 
-    // Показываем кнопки "Редактор сюжета", если ссылки были добавлены
+    // Показываем кнопку "Редактор сюжета", если ссылки были добавлены
     document.getElementById('editPlotButton').style.display = customImages.length > 0 ? 'block' : 'none';
 
     currentPlot = 3;
@@ -167,8 +164,7 @@ document.getElementById('saveCustomPlot').addEventListener('click', () => {
 });
 
 // Добавление обработчика события для кнопки "Редактор сюжета"
-document.getElementById('editPlotButton').addEventListener('click', (event) => {
-    event.stopPropagation();
+document.getElementById('editPlotButton').addEventListener('click', () => {
     document.getElementById('editPlotModal').style.display = 'block';
 
     // Предзаполнение полей ввода текущими названиями и описаниями
@@ -222,7 +218,7 @@ tg.onEvent('web_app_close', () => {
 document.addEventListener('DOMContentLoaded', () => {
     updateImage();
 
-    // Проверяем, нужно ли показывать кнопки "Редактор сюжета" и "Сохранение" при загрузке
+    // Проверяем, нужно ли показывать кнопку "Редактор сюжета" при загрузке
     const showCustomButtons = customImages.length > 0;
     document.getElementById('editPlotButton').style.display = showCustomButtons ? 'block' : 'none';
 });
