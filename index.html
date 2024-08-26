@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Место для вставки изображения -->
+    <div class="photo-container">
         <img id="photo" src="https://avatars.mds.yandex.net/i?id=c2bc7833f798c98dc32347e7e1f8da46ceffd2e1-9196574-images-thumbs&n=13" alt="Фото" class="photo">
-        
-        <!-- Кнопки для переключения фото -->
-        <div class="buttons">
-            <button id="prevButton">Предыдущее фото</button>
-            <button id="nextButton">Следующее фото</button>
+        <!-- Кнопки для переключения фото поверх изображения -->
+        <button id="prevButton" aria-label="Предыдущее фото" class="nav-button left">&#9664;</button> <!-- Левая стрелка -->
+        <button id="nextButton" aria-label="Следующее фото" class="nav-button right">&#9654;</button> <!-- Правая стрелка -->
+        <!-- Диалоговое окно с названием и описанием изображения -->
+        <div class="caption">
+            <h2 id="photoTitle">Название изображения 1</h2>
+            <p id="photoDescription">Это описание изображения 1.</p>
         </div>
     </div>
 
