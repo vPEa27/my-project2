@@ -41,10 +41,10 @@ const descriptionsPlot2 = [
     "Это описание изображения 3."
 ];
 
-// Получаем сохраненные ссылки на собственный сюжет из localStorage, если они существуют
+// Получаем сохраненные данные из localStorage
 const customImages = JSON.parse(localStorage.getItem('customImages')) || [];
-const customTitles = ["Название изображения 1", "Название изображения 2", "Название изображения 3"];
-const customDescriptions = ["Это описание изображения 1.", "Это описание изображения 2.", "Это описание изображения 3."];
+const customTitles = JSON.parse(localStorage.getItem('customTitles')) || ["Название изображения 1", "Название изображения 2", "Название изображения 3"];
+const customDescriptions = JSON.parse(localStorage.getItem('customDescriptions')) || ["Это описание изображения 1.", "Это описание изображения 2.", "Это описание изображения 3."];
 
 let currentIndex = 0;
 let currentPlot = 1; // Текущий выбранный сюжет (1, 2 или 3)
@@ -91,6 +91,13 @@ function updateImage() {
     }, 500); // Время должно совпадать с длительностью transition в CSS
 }
 
+// Функция сохранения пользовательских данных в localStorage
+function saveCustomData() {
+    localStorage.setItem('customImages', JSON.stringify(customImages));
+    localStorage.setItem('customTitles', JSON.stringify(customTitles));
+    localStorage.setItem('customDescriptions', JSON.stringify(customDescriptions));
+}
+
 // Обработчик кликов по изображению для перелистывания
 document.getElementById('photo').addEventListener('click', (event) => {
     const photoElement = event.currentTarget;
@@ -111,28 +118,28 @@ document.getElementById('photo').addEventListener('click', (event) => {
 
 // Добавление обработчиков событий для кнопок "Сюжет №1" и "Сюжет №2"
 document.getElementById('plot1Button').addEventListener('click', (event) => {
-    event.stopPropagation(); // Предотвращает всплытие события, чтобы клик по кнопке не воспринимался как клик по фото
-    currentPlot = 1; // Переключаемся на Сюжет №1
-    currentIndex = 0; // Сбрасываем индекс на начало для Сюжета №1
+    event.stopPropagation();
+    currentPlot = 1;
+    currentIndex = 0;
     updateImage();
 });
 
 document.getElementById('plot2Button').addEventListener('click', (event) => {
-    event.stopPropagation(); // Предотвращает всплытие события, чтобы клик по кнопке не воспринимался как клик по фото
-    currentPlot = 2; // Переключаемся на Сюжет №2
-    currentIndex = 0; // Сбрасываем индекс на начало для Сюжета №2
+    event.stopPropagation();
+    currentPlot = 2;
+    currentIndex = 0;
     updateImage();
 });
 
 // Добавление обработчика события для кнопки "Собственный сюжет"
 document.getElementById('customPlotButton').addEventListener('click', (event) => {
-    event.stopPropagation(); // Предотвращает всплытие события, чтобы клик по кнопке не воспринимался как клик по фото
-    document.getElementById('customPlotModal').style.display = 'block'; // Показать модальное окно
+    event.stopPropagation();
+    document.getElementById('customPlotModal').style.display = 'block';
 });
 
 // Обработчик для закрытия модального окна
 document.getElementById('closeModal').addEventListener('click', () => {
-    document.getElementById('customPlotModal').style.display = 'none'; // Скрыть модальное окно
+    document.getElementById('customPlotModal').style.display = 'none';
 });
 
 // Обработчик для сохранения пользовательских ссылок
@@ -142,27 +149,27 @@ document.getElementById('saveCustomPlot').addEventListener('click', () => {
     const link3 = document.getElementById('customLink3').value;
 
     // Сохраняем ссылки в массиве и в localStorage
-    customImages.length = 0; // Очищаем текущий массив
+    customImages.length = 0;
     if (link1) customImages.push(link1);
     if (link2) customImages.push(link2);
     if (link3) customImages.push(link3);
 
-    localStorage.setItem('customImages', JSON.stringify(customImages));
+    saveCustomData();  // Сохранение в localStorage
 
     // Показываем кнопку "Редактор сюжета", если ссылки были добавлены
     document.getElementById('editPlotButton').style.display = customImages.length > 0 ? 'block' : 'none';
 
-    currentPlot = 3; // Переключаемся на "Собственный сюжет"
-    currentIndex = 0; // Начинаем с первого изображения
+    currentPlot = 3;
+    currentIndex = 0;
 
-    document.getElementById('customPlotModal').style.display = 'none'; // Скрыть модальное окно
-    updateImage(); // Обновить изображение
+    document.getElementById('customPlotModal').style.display = 'none';
+    updateImage();
 });
 
 // Добавление обработчика события для кнопки "Редактор сюжета"
 document.getElementById('editPlotButton').addEventListener('click', (event) => {
-    event.stopPropagation(); // Предотвращает всплытие события
-    document.getElementById('editPlotModal').style.display = 'block'; // Показать модальное окно редактора
+    event.stopPropagation();
+    document.getElementById('editPlotModal').style.display = 'block';
 
     // Предзаполнение полей ввода текущими названиями и описаниями
     document.getElementById('editTitle1').value = customTitles[0];
@@ -175,7 +182,7 @@ document.getElementById('editPlotButton').addEventListener('click', (event) => {
 
 // Обработчик для закрытия модального окна редактора
 document.getElementById('closeEditModal').addEventListener('click', () => {
-    document.getElementById('editPlotModal').style.display = 'none'; // Скрыть модальное окно редактора
+    document.getElementById('editPlotModal').style.display = 'none';
 });
 
 // Обработчик для сохранения изменений в названиях и описаниях
@@ -188,13 +195,15 @@ document.getElementById('saveEditPlot').addEventListener('click', () => {
     customTitles[2] = document.getElementById('editTitle3').value;
     customDescriptions[2] = document.getElementById('editDesc3').value;
 
-    // Скрыть модальное окно редактора и обновить изображения
+    saveCustomData();  // Сохранение в localStorage
+
     document.getElementById('editPlotModal').style.display = 'none';
-    updateImage(); // Обновить изображение с новыми названиями и описаниями
+    updateImage();
 });
 
-// Логирование закрытия Web App
+// Логирование закрытия Web App и сохранение данных
 tg.onEvent('web_app_close', () => {
+    saveCustomData();
     console.log('Web App закрыт');
 });
 
