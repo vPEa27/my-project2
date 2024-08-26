@@ -6,10 +6,46 @@ body {
     align-items: center;
     height: 100vh;
     background: linear-gradient(to bottom right, #0000FF, #FF0000); /* Градиент от синего к красному */
+    position: relative; /* Позволяет позиционировать кнопки внутри body */
+}
+
+.custom-plot-container {
+    position: absolute;
+    top: 10px; /* Отступ от верхнего края */
+    left: 10px; /* Отступ от левого края */
+    display: flex;
+    flex-direction: column; /* Кнопки в колонку */
+    gap: 10px; /* Отступ между кнопками */
+    z-index: 10; /* Поверх остальных элементов */
+}
+
+.buttons-container {
+    position: absolute;
+    top: 10px; /* Отступ от верхнего края */
+    right: 10px; /* Отступ от правого края */
+    display: flex;
+    gap: 10px; /* Расстояние между кнопками */
+    z-index: 10; /* Поверх остальных элементов */
+}
+
+.plot-button {
+    background: linear-gradient(to right, #FFFF00, #ADFF2F); /* Градиент от жёлтого к светло-зелёному */
+    color: #000000; /* Черный текст */
+    border: 2px solid black; /* Чёрный контур */
+    border-radius: 15px; /* Закругленные углы */
+    padding: 10px 15px; /* Внутренние отступы */
+    cursor: pointer; /* Указатель руки при наведении */
+    font-size: 14px; /* Размер текста */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    transition: background-color 0.3s; /* Плавный переход фона */
+}
+
+.plot-button:hover {
+    background: linear-gradient(to right, #FFEB3B, #7FFF00); /* Изменение градиента фона при наведении */
 }
 
 .photo-container {
-    position: relative; /* Позволяет позиционировать кнопки и диалоговое окно поверх изображения */
+    position: relative; /* Позволяет позиционировать элементы поверх изображения */
     width: 100%;
     height: 100%;
     display: flex;
@@ -24,41 +60,12 @@ body {
     object-fit: contain; /* Сохраняет пропорции изображения и масштабирует его так, чтобы оно помещалось в контейнер */
     transition: opacity 0.5s ease-in-out; /* Переход для плавного появления и исчезновения */
     opacity: 1; /* Начальное состояние видимости */
+    cursor: pointer; /* Указатель руки при наведении на изображение */
+    pointer-events: auto; /* Включает клики только на изображении */
 }
 
 .fade-out {
     opacity: 0; /* Скрывает изображение */
-}
-
-.nav-button {
-    position: absolute;
-    top: 50%; /* Размещаем кнопку по центру по вертикали */
-    transform: translateY(-50%); /* Центрируем кнопку по вертикали */
-    background-color: transparent; /* Прозрачный фон кнопки */
-    color: white; /* Цвет стрелок */
-    border: none; /* Убираем границу кнопки */
-    font-size: 20px; /* Уменьшенный размер шрифта для стрелок */
-    cursor: pointer;
-    padding: 10px;
-    z-index: 10; /* Размещаем кнопки поверх изображения */
-    transition: background-color 0.3s;
-}
-
-.nav-button:hover {
-    background-color: rgba(0, 0, 0, 0.3); /* Темный полупрозрачный фон при наведении */
-    border-radius: 50%; /* Делаем фон круглым при наведении */
-}
-
-.nav-button:focus {
-    outline: none; /* Убираем обводку при фокусе */
-}
-
-.left {
-    left: 20px; /* Размещаем кнопку слева */
-}
-
-.right {
-    right: 20px; /* Размещаем кнопку справа */
 }
 
 .caption {
@@ -72,4 +79,55 @@ body {
     box-sizing: border-box; /* Включаем отступы в размеры */
     text-align: left; /* Выравниваем текст по левому краю */
     padding-left: 20px; /* Добавляем отступ слева */
+}
+
+/* Стили для модальных окон */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 20; /* Поверх других элементов */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Центрирование модального окна */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.edit-section {
+    margin-bottom: 20px;
 }
