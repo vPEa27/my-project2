@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <!-- Главная страница -->
+    <div class="container" id="main-page">
         <div class="header">
             <span class="balance-label">Луна Коин</span>
             <span class="balance-value" id="balance">0.000</span>
@@ -17,7 +18,7 @@
                 <img src="https://avatars.mds.yandex.net/i?id=3adc7d7c46f3242e401b6716d34fefc39e6db75b-10026462-images-thumbs&n=13" alt="Луна" class="coin-icon">
             </div>
             <div class="timer-section">
-                <span id="timer">01:00:00</span> <!-- Таймер обратного отсчета -->
+                <span id="timer">01:00</span> <!-- Таймер обратного отсчета -->
             </div>
             <div class="progress-section">
                 <div class="progress-bar-container">
@@ -28,11 +29,54 @@
             </div>
         </div>
         <div class="footer">
-            <button class="additional-button">Собрать</button>
-            <button class="additional-button">Луна Коин</button>
-            <button class="additional-button">Опция</button>
+            <button class="additional-button" id="upgradeButton">Улучшение</button>
+            <button class="additional-button" id="friendsButton">Друзья</button>
+            <button class="additional-button" id="tasksButton">Задания</button>
         </div>
     </div>
+
+    <!-- Страница улучшений -->
+    <div class="container" id="upgrade-page" style="display: none;">
+        <div class="header">
+            <h2>Улучшения</h2>
+        </div>
+        <div class="main-section">
+            <p>Здесь будут доступны различные улучшения для вашего майнинга.</p>
+        </div>
+        <div class="footer">
+            <button class="additional-button" id="backButtonFromUpgrades">Назад</button>
+        </div>
+    </div>
+
+    <!-- Страница друзей -->
+    <div class="container" id="friends-page" style="display: none;">
+        <div class="header">
+            <h2>Друзья</h2>
+        </div>
+        <div class="main-section">
+            <p>Поделитесь вашей реферальной ссылкой, чтобы пригласить друзей:</p>
+            <input type="text" id="referralLink" readonly>
+            <p>Ваши друзья:</p>
+            <ul id="friendsList"></ul>
+        </div>
+        <div class="footer">
+            <button class="additional-button" id="backButtonFromFriends">Назад</button>
+        </div>
+    </div>
+
+    <!-- Страница заданий -->
+    <div class="container" id="tasks-page" style="display: none;">
+        <div class="header">
+            <h2>Задания</h2>
+        </div>
+        <div class="main-section">
+            <p>Здесь будут отображаться задания и миссии.</p>
+        </div>
+        <div class="footer">
+            <button class="additional-button" id="backButtonFromTasks">Назад</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
