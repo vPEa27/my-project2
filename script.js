@@ -32,7 +32,7 @@ function initializeApp() {
 
 // Инициализация реферальной ссылки
 function initializeReferralLink() {
-    const referralLink = `${window.location.origin}${window.location.pathname}?ref=${generateUserId()}`;
+    const referralLink = `https://t.me/chtotytpisattablinbot?start=vPEa27`;
     referralLinkInput.value = referralLink;
 }
 
