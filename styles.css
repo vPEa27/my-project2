@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    background-image: url('https://avatars.mds.yandex.net/i?id=067ce4fadfdc35d036e83d5396b4480a00003da0-13239724-images-thumbs&n=13'); /* Замените на URL вашей фотографии */
+    background-image: url('https://i.pinimg.com/originals/91/8b/9f/918b9f17cfc6b92009381161b3ad8ec9.jpg'); /* Замените на URL вашей фотографии */
     background-size: cover; /* Изображение будет покрывать всю площадь контейнера */
     background-position: center; /* Изображение будет центрировано */
     border-radius: 20px;
@@ -49,7 +49,7 @@ body {
     height: 120px;
     margin: 0 auto;
     border-radius: 50%;
-    box-shadow: 0 0 20px #00ffff;
+    box-shadow: 0 0 20px #008b8b; /* Темный голубой цвет */
     margin-bottom: 20px;
     overflow: hidden; /* Убирает выступающие части изображения */
 }
@@ -59,7 +59,7 @@ body {
     height: 100%;
     object-fit: cover; /* Заполняет контейнер, обрезая края, чтобы соответствовать кругу */
     border-radius: 50%;
-    box-shadow: 0 0 15px 5px rgba(0, 255, 255, 0.5); /* Светящийся эффект */
+    box-shadow: 0 0 15px 5px rgba(0, 139, 139, 0.5); /* Темный голубой цвет с прозрачностью */
 }
 
 .timer-section {
@@ -86,7 +86,7 @@ body {
 .progress-bar {
     width: 0; /* Начальная ширина прогресс-бара */
     height: 100%;
-    background-color: #00ffff;
+    background-color: #008b8b; /* Темный голубой цвет */
     transition: width 1s linear; /* Плавное изменение ширины прогресс-бара */
 }
 
@@ -96,7 +96,7 @@ body {
     font-size: 18px;
     background-color: #4a4a4a;
     color: white;
-    border: 2px solid #00ffff;
+    border: 2px solid #008b8b; /* Темный голубой цвет */
     border-radius: 10px;
     cursor: pointer;
     margin-top: 10px; /* Отступ в 10px между прогресс-баром и кнопкой */
@@ -116,13 +116,14 @@ body {
 .additional-button {
     width: 30%;
     padding: 10px;
-    background-color: #333333;
-    border: 1px solid #4a4a4a;
+    background-color: #4a4a4a;
+    border: 2px solid #008b8b; /* Темный голубой цвет */
     border-radius: 10px;
     color: #ffffff;
     cursor: pointer;
+    position: relative; /* Поверх фона */
 }
 
 .additional-button:hover {
-    background-color: #4a4a4a;
+    background-color: #333333;
 }
