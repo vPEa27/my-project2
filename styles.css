@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    background-image: url('https://get.wallhere.com/photo/monochrome-night-sky-clouds-moonlight-atmosphere-universe-midnight-cloud-darkness-screenshot-1280x768-px-black-and-white-outer-space-astronomical-object-geological-phenomenon-514222.jpg'); /* Замените на URL вашей фотографии */
+    background-image: url('https://avatars.mds.yandex.net/i?id=067ce4fadfdc35d036e83d5396b4480a00003da0-13239724-images-thumbs&n=13'); /* Замените на URL вашей фотографии */
     background-size: cover; /* Изображение будет покрывать всю площадь контейнера */
     background-position: center; /* Изображение будет центрировано */
     border-radius: 20px;
