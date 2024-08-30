@@ -10,7 +10,7 @@ const tasksButton = document.getElementById('tasksButton'); // Кнопка дл
 const backButtonFromUpgrades = document.getElementById('backButtonFromUpgrades'); // Кнопка для возврата на главную страницу с улучшений
 const backButtonFromFriends = document.getElementById('backButtonFromFriends'); // Кнопка для возврата на главную страницу с друзей
 const backButtonFromTasks = document.getElementById('backButtonFromTasks'); // Кнопка для возврата на главную страницу с заданий
-const shareButton = document.getElementById('shareButton'); // Кнопка "Поделиться"
+const copyLinkButton = document.getElementById('copyLinkButton'); // Кнопка "Скопировать ссылку"
 const timerDisplay = document.getElementById('timer');
 const referralLinkInput = document.getElementById('referralLink');
 const friendsList = document.getElementById('friendsList');
@@ -168,25 +168,15 @@ backButtonFromTasks.addEventListener('click', function() {
     showPage('main-page'); // Переход на главную страницу
 });
 
-// Добавляем обработчик событий на кнопку "Поделиться"
-shareButton.addEventListener('click', function() {
+// Добавляем обработчик событий на кнопку "Скопировать ссылку"
+copyLinkButton.addEventListener('click', function() {
     const referralLink = referralLinkInput.value;
-    const message = `Присоединяйся к MiniApp и получай бонусы! ${referralLink}`;
-
-    if (navigator.share) {
-        navigator.share({
-            title: 'Присоединяйся к MiniApp ЛУНА Майнер',
-            text: message,
-            url: referralLink
-        }).catch(error => console.log('Ошибка при попытке поделиться:', error));
-    } else {
-        // Если API "Поделиться" не поддерживается, копируем ссылку в буфер обмена
-        navigator.clipboard.writeText(message).then(() => {
-            alert('Ссылка скопирована в буфер обмена');
-        }, (err) => {
-            console.error('Ошибка при копировании ссылки: ', err);
-        });
-    }
+    
+    navigator.clipboard.writeText(referralLink).then(() => {
+        alert('Ссылка скопирована в буфер обмена');
+    }).catch((err) => {
+        console.error('Ошибка при копировании ссылки: ', err);
+    });
 });
 
 // Инициализируем приложение при загрузке
