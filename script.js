@@ -10,10 +10,12 @@ const tasksButton = document.getElementById('tasksButton'); // Кнопка дл
 const backButtonFromUpgrades = document.getElementById('backButtonFromUpgrades'); // Кнопка для возврата на главную страницу с улучшений
 const backButtonFromFriends = document.getElementById('backButtonFromFriends'); // Кнопка для возврата на главную страницу с друзей
 const backButtonFromTasks = document.getElementById('backButtonFromTasks'); // Кнопка для возврата на главную страницу с заданий
+const shareButton = document.getElementById('shareButton'); // Кнопка "Поделиться"
 const timerDisplay = document.getElementById('timer');
 const referralLinkInput = document.getElementById('referralLink');
 const friendsList = document.getElementById('friendsList');
 
+const botUsername = 'chtotytpisattablinbot'; // Имя вашего бота
 const miningDuration = 60; // Длительность майнинга в секундах (1 час)
 const miningIncrement = 100 / miningDuration; // Шаг прогресса
 let remainingTime = miningDuration; // Оставшееся время в секундах
@@ -32,7 +34,7 @@ function initializeApp() {
 
 // Инициализация реферальной ссылки
 function initializeReferralLink() {
-    const referralLink = `https://t.me/chtotytpisattablinbot?start=vPEa27`;
+    const referralLink = `https://t.me/${botUsername}?start=${generateUserId()}`;
     referralLinkInput.value = referralLink;
 }
 
@@ -44,7 +46,7 @@ function generateUserId() {
 // Проверка URL на наличие реферального параметра
 function checkReferral() {
     const urlParams = new URLSearchParams(window.location.search);
-    const referrerId = urlParams.get('ref');
+    const referrerId = urlParams.get('start');
     if (referrerId) {
         addFriend(referrerId);
     }
@@ -164,6 +166,13 @@ backButtonFromFriends.addEventListener('click', function() {
 // Добавляем обработчик событий на кнопку "Назад" со страницы заданий
 backButtonFromTasks.addEventListener('click', function() {
     showPage('main-page'); // Переход на главную страницу
+});
+
+// Добавляем обработчик событий на кнопку "Поделиться"
+shareButton.addEventListener('click', function() {
+    const referralLink = referralLinkInput.value;
+    const encodedMessage = encodeURIComponent(`Присоединяйся к MiniApp и получай бонусы! ${referralLink}`);
+    window.location.href = `tg://msg_url?url=${encodedMessage}`;
 });
 
 // Инициализируем приложение при загрузке
