@@ -1,6 +1,8 @@
 let balance = parseFloat(localStorage.getItem('balance')) || 0.000; // Восстанавливаем баланс из локального хранилища или устанавливаем начальный баланс
 let isMining = false;
 let progress = 0;
+let dailyLoginStreak = parseInt(localStorage.getItem('dailyLoginStreak')) || 0; // Восстанавливаем серию ежедневных входов
+let lastLoginDate = localStorage.getItem('lastLoginDate') || null; // Восстанавливаем дату последнего входа
 const progressBar = document.getElementById('progress-bar');
 const balanceDisplay = document.getElementById('balance');
 const collectButton = document.getElementById('collectButton');
@@ -11,6 +13,10 @@ const backButtonFromUpgrades = document.getElementById('backButtonFromUpgrades')
 const backButtonFromFriends = document.getElementById('backButtonFromFriends'); // Кнопка для возврата на главную страницу с друзей
 const backButtonFromTasks = document.getElementById('backButtonFromTasks'); // Кнопка для возврата на главную страницу с заданий
 const copyLinkButton = document.getElementById('copyLinkButton'); // Кнопка "Скопировать ссылку"
+const dailyLoginButton = document.getElementById('dailyLoginButton'); // Кнопка "Ежедневный вход"
+const collectRewardButton = document.getElementById('collectRewardButton'); // Кнопка "Собрать награду"
+const rewardsSection = document.getElementById('rewards-section'); // Секция наград
+const rewardsList = document.getElementById('rewardsList');
 const timerDisplay = document.getElementById('timer');
 const referralLinkInput = document.getElementById('referralLink');
 const friendsList = document.getElementById('friendsList');
@@ -30,6 +36,9 @@ function initializeApp() {
 
     // Проверяем реферальную ссылку
     checkReferral();
+
+    // Проверяем ежедневный вход
+    checkDailyLogin();
 }
 
 // Инициализация реферальной ссылки
@@ -50,6 +59,37 @@ function checkReferral() {
     if (referrerId) {
         addFriend(referrerId);
     }
+}
+
+// Проверка ежедневного входа
+function checkDailyLogin() {
+    const today = new Date().toISOString().split('T')[0]; // Получаем сегодняшнюю дату в формате YYYY-MM-DD
+
+    if (lastLoginDate !== today) {
+        if (lastLoginDate === null || new Date(today) - new Date(lastLoginDate) > 86400000) {
+            // Сбрасываем серию входов, если пользователь пропустил день
+            dailyLoginStreak = 0;
+        }
+
+        lastLoginDate = today;
+        localStorage.setItem('lastLoginDate', lastLoginDate);
+        updateRewards();
+    }
+}
+
+// Обновление наград за ежедневный вход
+function updateRewards() {
+    dailyLoginStreak += 1;
+    localStorage.setItem('dailyLoginStreak', dailyLoginStreak);
+
+    rewardsList.innerHTML = '';
+    for (let i = 1; i <= dailyLoginStreak; i++) {
+        const listItem = document.createElement('li');
+        listItem.textContent = `День ${i}: ${i * 0.001} Луна Коинов`;
+        rewardsList.appendChild(listItem);
+    }
+
+    rewardsSection.style.display = 'block';
 }
 
 // Добавление друга в локальное хранилище
@@ -177,6 +217,22 @@ copyLinkButton.addEventListener('click', function() {
     }).catch((err) => {
         console.error('Ошибка при копировании ссылки: ', err);
     });
+});
+
+// Добавляем обработчик событий на кнопку "Ежедневный вход"
+dailyLoginButton.addEventListener('click', function() {
+    updateRewards();
+});
+
+// Добавляем обработчик событий на кнопку "Собрать награду"
+collectRewardButton.addEventListener('click', function() {
+    const reward = dailyLoginStreak * 0.001; // Рассчитываем награду
+    balance += reward; // Добавляем награду к балансу
+    saveBalance(); // Сохраняем баланс
+    balanceDisplay.innerText = balance.toFixed(3); // Обновляем отображение баланса
+
+    alert(`Вы собрали ${reward.toFixed(3)} Луна Коинов!`);
+    rewardsSection.style.display = 'none'; // Скрываем секцию наград
 });
 
 // Инициализируем приложение при загрузке
