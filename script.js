@@ -171,8 +171,22 @@ backButtonFromTasks.addEventListener('click', function() {
 // Добавляем обработчик событий на кнопку "Поделиться"
 shareButton.addEventListener('click', function() {
     const referralLink = referralLinkInput.value;
-    const encodedMessage = encodeURIComponent(`Присоединяйся к MiniApp и получай бонусы! ${referralLink}`);
-    window.location.href = `tg://msg_url?url=${encodedMessage}`;
+    const message = `Присоединяйся к MiniApp и получай бонусы! ${referralLink}`;
+
+    if (navigator.share) {
+        navigator.share({
+            title: 'Присоединяйся к MiniApp ЛУНА Майнер',
+            text: message,
+            url: referralLink
+        }).catch(error => console.log('Ошибка при попытке поделиться:', error));
+    } else {
+        // Если API "Поделиться" не поддерживается, копируем ссылку в буфер обмена
+        navigator.clipboard.writeText(message).then(() => {
+            alert('Ссылка скопирована в буфер обмена');
+        }, (err) => {
+            console.error('Ошибка при копировании ссылки: ', err);
+        });
+    }
 });
 
 // Инициализируем приложение при загрузке
