@@ -1,3 +1,4 @@
+/* Общие стили для страницы */
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(to bottom, #000000, #00008b); /* Градиент от черного к синему */
@@ -90,40 +91,138 @@ body {
     transition: width 1s linear; /* Плавное изменение ширины прогресс-бара */
 }
 
+/* Дизайн кнопки "Собрать Луна монеты" */
 .collect-button {
     width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    background-color: #4a4a4a;
+    padding: 15px;
+    font-size: 20px;
+    background: linear-gradient(to bottom right, #00eaff, #006080); /* Градиент от светлого голубого к темному синему */
     color: white;
-    border: 2px solid #008b8b; /* Темный голубой цвет */
-    border-radius: 10px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 139, 139, 0.6); /* Светящийся голубой тень */
+    text-transform: uppercase;
+    font-weight: bold;
     cursor: pointer;
-    margin-top: 10px; /* Отступ в 10px между прогресс-баром и кнопкой */
-    position: relative; /* Поверх фона */
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация при наведении */
 }
 
 .collect-button:hover {
-    background-color: #333333;
+    transform: scale(1.05); /* Небольшое увеличение */
+    box-shadow: 0 6px 20px rgba(0, 206, 209, 0.8); /* Более яркая тень при наведении */
 }
 
-.footer {
-    display: flex;
-    justify-content: space-between;
-    position: relative; /* Поверх фона */
+/* Убираем иконку луны, которая добавляла белый круг */
+.collect-button::before {
+    content: none;
 }
 
+/* Дизайн дополнительных кнопок (Улучшение, Друзья, Задания) */
 .additional-button {
     width: 30%;
     padding: 10px;
-    background-color: #4a4a4a;
+    background: linear-gradient(to bottom, #00008b, #000000); /* Градиент от синего к черному */
     border: 2px solid #008b8b; /* Темный голубой цвет */
     border-radius: 10px;
     color: #ffffff;
     cursor: pointer;
-    position: relative; /* Поверх фона */
+    position: relative;
 }
 
 .additional-button:hover {
-    background-color: #333333;
+    background: linear-gradient(to bottom, #000066, #000000); /* Градиент при наведении */
+}
+
+/* Модальное окно */
+.modal {
+    display: none; /* Скрываем модальное окно по умолчанию */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+/* Центрирование модального окна */
+.modal-content {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Скрытие наград после 15 дней */
+#rewardsList li:nth-child(n+16) {
+    display: none;
+}
+
+/* Подсветка текущего дня */
+.current-day {
+    background-color: rgba(0, 139, 139, 0.5);
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ff0000;
+}
+
+#collectRewardButton {
+    background: linear-gradient(to bottom, #00008b, #000000); /* Градиент для кнопки сбора награды */
+    border: 2px solid #008b8b; /* Темный голубой цвет */
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+#collectRewardButton:hover {
+    background: linear-gradient(to bottom, #000066, #000000);
+}
+
+.task-button {
+    background: linear-gradient(90deg, #0f0c29, #302b63, #24243e); /* Градиент от темного синего к черному */
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    text-align: center;
+    margin: 10px 0;
+    width: 200px;
+}
+
+.task-button:hover {
+    background: linear-gradient(90deg, #1d2671, #c33764); /* При наведении градиент с другими цветами */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    transform: scale(1.05); /* Небольшое увеличение при наведении */
+}
+
+.task-button:active {
+    transform: scale(0.98); /* Эффект нажатия */
 }
