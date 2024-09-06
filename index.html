@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiniApp ЛУНА Майнер</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -18,11 +18,10 @@
                 <img src="https://avatars.mds.yandex.net/i?id=3adc7d7c46f3242e401b6716d34fefc39e6db75b-10026462-images-thumbs&n=13" alt="Луна" class="coin-icon">
             </div>
             <div class="timer-section">
-                <span id="timer">01:00</span> <!-- Таймер обратного отсчета -->
+                <span id="timer">01:00</span>
             </div>
             <div class="progress-section">
                 <div class="progress-bar-container">
-                    <!-- Прогресс-бар -->
                     <div class="progress-bar" id="progress-bar"></div>
                 </div>
                 <button id="collectButton" class="collect-button">Собрать Луна монеты</button>
@@ -77,13 +76,21 @@
                 </li>
             </ul>
         </div>
-        <div class="rewards-section" id="rewards-section" style="display: none;">
-            <p>Ваши награды за вход:</p>
-            <ul id="rewardsList"></ul>
-            <button class="additional-button" id="collectRewardButton">Собрать награду</button>
-        </div>
         <div class="footer">
             <button class="additional-button" id="backButtonFromTasks">Назад</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно для ежедневных наград -->
+    <div id="dailyRewardModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Награды за ежедневный вход</h2>
+            <li>
+                <button class="task-button" id="dailyLoginButton">Ежедневный вход</button>
+            </li>            
+            <ul id="rewardsList"></ul>
+            <button id="collectRewardButton" class="additional-button">Собрать награду</button>
         </div>
     </div>
 
